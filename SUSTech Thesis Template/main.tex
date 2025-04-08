@@ -1,0 +1,57 @@
+% !Mode:: "TeX:UTF-8"
+% !TEX program  = xelatex
+
+% 论文语言设置
+\newif\ifisChinese
+\isChinesetrue  % 中文
+% \isChinesefalse  % 英文
+
+\documentclass{sustech}
+\usepackage{amsmath, amssymb, amsthm}
+\usepackage{array}
+\usepackage{graphicx, float, subcaption}
+\usepackage{CJKutf8}
+
+\begin{document}
+
+% 论文信息
+\title{本科生论文格式模板长长长长长长长长长长长长长长长长长长长长}
+\author{张三}
+\studentID{12345678}
+\department{自动化与智能制造学院}
+\major{自动化}
+\advisor{李四教授}
+\completiontime{2025年5月22日}
+\maketitle
+
+% 摘要
+\input{Sections/Abstract.tex}
+
+% 目录
+\newpage
+\nopagenumber
+\tableofcontents
+
+
+% 开始正文
+\newpage
+\startpagenumber
+\input{Sections/Introduction.tex}
+\input{Sections/RelatedWork.tex}
+\input{Sections/Methodology.tex}
+\input{Sections/Experiments.tex}
+\input{Sections/Conclusion.tex}
+
+% 参考文献
+\newpage
+\bibliography{references}
+\bibliographystyle{gbt7714-numerical}
+% \bibliographystyle{ieeetr}
+
+% 附录
+\input{Sections/Appendix}
+
+% 致谢
+\input{Sections/Acknowledgement.tex}
+
+\end{document}
