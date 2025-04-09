@@ -10,7 +10,7 @@
 % 字体字号
 \RequirePackage[UTF8]{ctex}  % 中文字体 ctex默认宋体
 \RequirePackage{xeCJK}
-% \setCJKmainfont{simsun.ttc}  % 生僻字局部解决
+\setCJKmainfont{simsun.ttc}[AutoFakeBold]
 \RequirePackage{times}  % 英文字体 Times New Roman
 \setmainfont{Times New Roman}
 
