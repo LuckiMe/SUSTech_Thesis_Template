@@ -324,17 +324,20 @@
 \renewcommand{\bibname}{\wuhao \rmfamily References}  % 参考文献为五号字
 \AtBeginEnvironment{thebibliography}{\wuhao}
 \ifisChinese
+    \newcommand{\Reference}{\addcontentsline{toc}{section}{参考文献} \bibliography{references} \bibliographystyle{gbt7714-numerical}}
     \renewcommand{\cite}[1]{\textsuperscript{\citep{#1}}}  % 右上角标
+\else
+    \newcommand{\Reference}{\addcontentsline{toc}{section}{References} \bibliography{references} \bibliographystyle{ieeetr}}
 \fi
 
 % 附录和致谢
 \RequirePackage{etoolbox}  % 处理字符串匹配
 \ifisChinese
-    \newcommand{\Appendix}{\section*{附~~~录}}
-    \newcommand{\Acknowledgement}{\section*{致~~~谢}}
+    \newcommand{\Appendix}{\addcontentsline{toc}{section}{附~~~录} \section*{附~~~录}}
+    \newcommand{\Acknowledgement}{\addcontentsline{toc}{section}{致~~~谢} \section*{致~~~谢}}
 \else
-    \newcommand{\Appendix}{\section*{Appendix}}
-    \newcommand{\Acknowledgement}{\section*{Acknowledgement}}
+    \newcommand{\Appendix}{\addcontentsline{toc}{section}{Appendix} \section*{Appendix}}
+    \newcommand{\Acknowledgement}{\addcontentsline{toc}{section}{Acknowledgement} \section*{Acknowledgement}}
 \fi
 
 \endinput
