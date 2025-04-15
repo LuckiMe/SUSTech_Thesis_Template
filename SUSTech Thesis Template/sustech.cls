@@ -122,9 +122,9 @@
         \begin{adjustbox}{minipage=[t][\myheight]{\dimexpr#1\relax},margin=0pt}%
             \vphantom{Eg}\lower\dimexpr#2\relax
             \hbox to \hsize{\leaders\hrule\hfill\kern0pt}\par
-            \kern-\dimexpr#2 + 5pt\relax
+            \kern-\dimexpr#2 + 3pt\relax
             \xleaders\vbox to\baselineskip {\vfill \hbox{\lower\dimexpr#2\relax\hbox to \hsize{\leaders\hrule\hfill\kern0pt}}
-            \kern-\dimexpr#2 + 5pt\relax}\vfill
+            \kern-\dimexpr#2 + 3pt\relax}\vfill
             \kern\Mysavedprevdepth
         \end{adjustbox}%
     }%
