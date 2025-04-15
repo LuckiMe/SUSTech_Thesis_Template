@@ -10,13 +10,15 @@
 % 字体字号
 \RequirePackage[UTF8]{ctex}  % 中文字体 ctex默认宋体
 \RequirePackage{xeCJK}
-\setCJKmainfont{simsun.ttc}[AutoFakeBold]
+\setCJKmainfont{simsun.ttc}[AutoFakeBold]  % 宋体常规
+\setCJKfamilyfont{kaiti}{simkai.ttf}  % 楷体常规
+\newcommand{\kaiti}{\CJKfamily{kaiti}}
 \RequirePackage{times}  % 英文字体 Times New Roman
 \setmainfont{Times New Roman}
 
 \renewcommand{\normalsize}{\fontsize{12pt}{18pt}\selectfont}
 \newcommand{\xiaochu}{\fontsize{36pt}{45pt}\selectfont}  % 小初, 1.25倍行距
-\newcommand{\erhao}{\fontsize{22pt}{28pt}\selectfont}  % 二号, 1.25倍行距
+\newcommand{\erhao}{\fontsize{22pt}{33pt}\selectfont}  % 二号, 1.5倍行距
 \newcommand{\xiaoer}{\fontsize{18pt}{27pt}\selectfont}  % 小二, 1.5倍行距
 \newcommand{\sanhao}{\fontsize{16pt}{24pt}\selectfont}  % 三号, 1.5倍行距
 \newcommand{\xiaosan}{\fontsize{15pt}{22pt}\selectfont}  % 小三, 1.5倍行距
@@ -48,21 +50,23 @@
 \RequirePackage{adjustbox}
 \newlength\myheight
 \newcommand\Mysavedprevdepth{}%
-\newcommand\UnderlineCentered[3]{%
-  \begin{adjustbox}{minipage=[t]{\dimexpr#1\relax},gstore totalheight=\myheight,margin=0pt}%
-    \centering\leavevmode#3\par\xdef\Mysavedprevdepth{\the\prevdepth}%
-  \end{adjustbox}%
-  \hspace*{-\dimexpr#1\relax}%
-  \begin{adjustbox}{minipage=[t][\myheight]{\dimexpr#1\relax},margin=0pt}%
-    \vphantom{Eg}\lower\dimexpr#2\relax\hbox to\hsize{\leaders\hrule\hfill\kern0pt}\par
-    \kern-\dimexpr#2\relax
-    \xleaders\vbox to\baselineskip {\vfill\hbox{\lower\dimexpr#2\relax\hbox to\hsize{\leaders\hrule\hfill\kern0pt}}\kern-\dimexpr#2\relax}\vfill
-    \kern\Mysavedprevdepth
-  \end{adjustbox}%
-}%
 
 \ifisChinese
-    \newcommand\info[2]{\makebox[3cm][s]{\sanhao \textbf{#1}} \UnderlineCentered{9cm}{1.5mm}{\centering \sanhao #2}}
+    \newcommand\UnderlineCentered[3]{%
+        \begin{adjustbox}{minipage=[t]{\dimexpr#1\relax},gstore totalheight=\myheight,margin=0pt}%
+            \centering\leavevmode#3\par\xdef\Mysavedprevdepth{\the\prevdepth}%
+        \end{adjustbox}%
+        \hspace*{-\dimexpr#1\relax}%
+        \begin{adjustbox}{minipage=[t][\myheight]{\dimexpr#1\relax},margin=0pt}%
+            \vphantom{Eg}\lower\dimexpr#2\relax
+            \hbox to \hsize{\leaders\hrule\hfill\kern0pt}\par
+            \kern-\dimexpr#2\relax
+            \xleaders\vbox to\baselineskip {\vfill \hbox{\lower\dimexpr#2\relax\hbox to \hsize{\leaders\hrule\hfill\kern0pt}}
+            \kern-\dimexpr#2\relax}\vfill
+            \kern\Mysavedprevdepth
+        \end{adjustbox}%
+    }%
+    \newcommand\info[2]{\makebox[3cm][s]{\sanhao \textbf{#1}} \UnderlineCentered{9cm}{2mm}{\centering \sanhao #2}}
     \newcommand\topinfo[1]{\makebox[1.5cm][s]{\xiaosi #1} \underline{\hspace{2cm}}}
     
     \renewcommand{\maketitle}{
@@ -81,6 +85,7 @@
             \vspace*{1cm}
             
             % 论文标题
+            {\bfseries
             {\xiaochu \bfseries 本科生毕业设计（论文）}  
             \vspace*{2cm}
             
@@ -100,7 +105,7 @@
             \info{专业：}{\major}  
             \vspace*{0.5cm}
             
-            \info{指导老师：}{\advisor}  
+            \info{指导老师：}{\advisor}} 
             \vspace*{2cm}
             
             {\sanhao \completiontime}
@@ -109,7 +114,21 @@
         \end{titlepage}
     }
 \else
-    \newcommand\info[2]{\makebox[3cm][r]{\sanhao \textbf{#1}} \UnderlineCentered{9cm}{1.5mm}{\centering \sanhao #2}}
+    \newcommand\UnderlineCentered[3]{%
+    \begin{adjustbox}{minipage=[t]{\dimexpr#1\relax},gstore totalheight=\myheight,margin=0pt}%
+        \centering\leavevmode#3\par\xdef\Mysavedprevdepth{\the\prevdepth}%
+        \end{adjustbox}%
+        \hspace*{-\dimexpr#1\relax}%
+        \begin{adjustbox}{minipage=[t][\myheight]{\dimexpr#1\relax},margin=0pt}%
+            \vphantom{Eg}\lower\dimexpr#2\relax
+            \hbox to \hsize{\leaders\hrule\hfill\kern0pt}\par
+            \kern-\dimexpr#2 + 5pt\relax
+            \xleaders\vbox to\baselineskip {\vfill \hbox{\lower\dimexpr#2\relax\hbox to \hsize{\leaders\hrule\hfill\kern0pt}}
+            \kern-\dimexpr#2 + 5pt\relax}\vfill
+            \kern\Mysavedprevdepth
+        \end{adjustbox}%
+    }%
+    \newcommand\info[2]{\makebox[3cm][r]{\sanhao \textbf{#1}} \UnderlineCentered{9cm}{2mm}{\centering \sanhao #2}}
     
     \renewcommand{\maketitle}{
         \begin{titlepage}
@@ -127,6 +146,7 @@
             \vspace*{1.5cm}
             
             % 论文标题
+            {\bfseries
             {\xiaochu Undergraduate Thesis}  
             \vspace*{2cm}
             
@@ -146,7 +166,7 @@
             \info{Program: }{\major}  
             \vspace*{0.5cm}
             
-            \info{Thesis Advisor: }{\advisor}  
+            \info{Thesis Advisor: }{\advisor}}
             \vspace*{2cm}
     
             {\sanhao Date: \ \completiontime}
@@ -247,12 +267,19 @@
 \newcommand{\nopagenumber}{\pagenumbering{gobble}}
 \newcommand{\startpagenumber}{\clearpage \pagenumbering{arabic}}
 
+% 公式设置
+\RequirePackage{etoolbox}
+% \everydisplay{\setstretch{1.2}}
+% \setlength{\arraycolsep}{7pt}
+
 % 图片设置
 \RequirePackage{caption}
+\RequirePackage{chngcntr} % 控制计数器
 \DeclareCaptionFont{wuhao}{\wuhao}
 \DeclareCaptionFont{heiti}{\heiti}
 \renewcommand{\thefigure}{\arabic{figure}}  % 全文统一编号，如 1, 2
-% \renewcommand{\thefigure}{\thechapter.\arabic{figure}} % 按章编号，如 1.1, 1.2
+% \counterwithin{figure}{section} % 让 figure 编号依附于 section
+% \renewcommand{\thefigure}{\thesection.\arabic{figure}} % 按章编号，如 1.1, 1.2
 \ifisChinese
     \captionsetup[figure]{  % 设置图题格式：五号宋体加黑
         labelfont={bf,wuhao},  % 加粗五号字
@@ -285,7 +312,10 @@
 
 % 表格设置
 \RequirePackage{booktabs}
+\RequirePackage{multirow}
 \renewcommand{\thetable}{\arabic{table}}  % 全文统一编号，如 1, 2
+% \counterwithin{table}{section} % 让 table 编号依附于 section
+% \renewcommand{\thetable}{\thesection.\arabic{table}} % 按章编号，如 1.1, 1.2
 \ifisChinese
     \captionsetup[table]{  % 设置表格标题格式：五号宋体加黑
         labelfont={bf,wuhao},  % 表序：加粗五号字
@@ -304,7 +334,6 @@
     }
 \fi
 \newcommand{\settablefont}{\centering \wuhao}  % 表格内容五号字
-
 
 % 注释
 \newcommand{\footnoteformat}{\xiaowu}  % 注释为小五号字
@@ -331,7 +360,6 @@
 \fi
 
 % 附录和致谢
-\RequirePackage{etoolbox}  % 处理字符串匹配
 \ifisChinese
     \newcommand{\Appendix}{\addcontentsline{toc}{section}{附~~~录} \section*{附~~~录}}
     \newcommand{\Acknowledgement}{\addcontentsline{toc}{section}{致~~~谢} \section*{致~~~谢}}
