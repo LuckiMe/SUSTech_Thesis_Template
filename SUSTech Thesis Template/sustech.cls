@@ -60,8 +60,8 @@
         \begin{adjustbox}{minipage=[t][\myheight]{\dimexpr#1\relax},margin=0pt}%
             \vphantom{Eg}\lower\dimexpr#2\relax
             \hbox to \hsize{\leaders\hrule\hfill\kern0pt}\par
-            \kern-\dimexpr#2-5pt\relax
-            \xleaders\vbox to\baselineskip {\vfill \hbox{\lower\dimexpr#2\relax\hbox to \hsize{\leaders\hrule\hfill\kern0pt}
+            \kern-\dimexpr#2\relax
+            \xleaders\vbox to\baselineskip {\vspace{1cm} \hbox{\lower\dimexpr#2\relax\hbox to \hsize{\leaders\hrule\hfill\kern0pt}
             \kern-\dimexpr#2-5pt\relax}}\vfill
             \kern\Mysavedprevdepth
         \end{adjustbox}%
@@ -91,7 +91,7 @@
             
             % 学生信息 
             \info{题目：}{\thesistitle}  
-            \vspace*{1.5cm}
+            \vspace*{1cm}
             
             \info{姓名：}{\thesisauthor}  
             \vspace*{0.5cm}
@@ -122,9 +122,9 @@
         \begin{adjustbox}{minipage=[t][\myheight]{\dimexpr#1\relax},margin=0pt}%
             \vphantom{Eg}\lower\dimexpr#2\relax
             \hbox to \hsize{\leaders\hrule\hfill\kern0pt}\par
-            \kern-\dimexpr#2 - 5pt\relax
-            \xleaders\vbox to\baselineskip {\vfill \hbox{\lower\dimexpr#2\relax\hbox to \hsize{\leaders\hrule\hfill\kern0pt}
-            \kern-\dimexpr#2 - 5pt\relax}}\vfill
+            \kern-\dimexpr#2\relax
+            \xleaders\vbox to\baselineskip {\vspace{1cm} \hbox{\lower\dimexpr#2\relax\hbox to \hsize{\leaders\hrule\hfill\kern0pt}
+            \kern-\dimexpr#2-5pt\relax}}\vfill
             \kern\Mysavedprevdepth
         \end{adjustbox}%
     }%
