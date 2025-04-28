@@ -62,7 +62,8 @@
             \hbox to \hsize{\leaders\hrule\hfill\kern0pt}\par
             \kern-\dimexpr#2\relax
             \xleaders\vbox to\baselineskip {\vspace{1cm} \hbox{\lower\dimexpr#2\relax\hbox to \hsize{\leaders\hrule\hfill\kern0pt}
-            \kern-\dimexpr#2-5pt\relax}}\vfill
+            \kern-\dimexpr#2 - 5pt\relax}
+            }\vfill
             \kern\Mysavedprevdepth
         \end{adjustbox}%
     }%
@@ -115,19 +116,29 @@
     }
 \else
     \newcommand\UnderlineCentered[3]{%
-    \begin{adjustbox}{minipage=[t]{\dimexpr#1\relax},gstore totalheight=\myheight,margin=0pt}%
-        \centering\leavevmode#3\par\xdef\Mysavedprevdepth{\the\prevdepth}%
+        \begin{adjustbox}{minipage=[t]{\dimexpr#1\relax},gstore totalheight=\myheight,margin=0pt}%
+            \centering\leavevmode#3\par\xdef\Mysavedprevdepth{\the\prevdepth}%
         \end{adjustbox}%
         \hspace*{-\dimexpr#1\relax}%
-        \begin{adjustbox}{minipage=[t][\myheight]{\dimexpr#1\relax},margin=0pt}%
-            \vphantom{Eg}\lower\dimexpr#2\relax
-            \hbox to \hsize{\leaders\hrule\hfill\kern0pt}\par
-            \kern-\dimexpr#2\relax
-            \xleaders\vbox to\baselineskip {\vspace{1cm} \hbox{\lower\dimexpr#2\relax\hbox to \hsize{\leaders\hrule\hfill\kern0pt}
-            \kern-\dimexpr#2-5pt\relax}}\vfill
+        \begin{adjustbox}{minipage=[t][\myheight]{\dimexpr#1\relax}, margin=0pt}%
+            \vphantom{Eg}
+            \lower\dimexpr#2\relax
+            \hbox to \hsize{\leaders\hrule\hfill\kern0pt} \par
+            \kern-\dimexpr#2 \relax
+            \xleaders
+            \vbox to \baselineskip{
+                \vspace{1cm}
+                \hbox{
+                    \lower\dimexpr#2\relax
+                    \hbox to \hsize{\leaders\hrule\hfill\kern0pt} \par
+                    \kern-\dimexpr#2 - 5pt\relax
+                }
+            }
+            \vfill
             \kern\Mysavedprevdepth
         \end{adjustbox}%
     }%
+    
     \newcommand\info[2]{\makebox[3cm][r]{\sanhao \textbf{#1}} \UnderlineCentered{9cm}{2mm}{\centering \sanhao #2}}
     
     \renewcommand{\maketitle}{
@@ -139,11 +150,11 @@
             \newline
             UDC \hfill Available for reference \quad $\Box$ \ Yes \quad $\Box$ \ No 
             \newline
-            \vspace*{1cm}
+            \vspace*{0.5cm}
             
             \includegraphics[width=1.0\linewidth]{Images/SUSTech_title_En.png}
 
-            \vspace*{1.5cm}
+            \vspace*{1cm}
             
             % 论文标题
             {\bfseries
@@ -221,8 +232,12 @@
 
 \ifisChinese
     \renewcommand{\contentsname}{\centerline{\xiaoer \heiti \textbf{目~~~录}}}
+    \renewcommand{\listfigurename}{\centerline{\xiaoer \textbf{图~~~目~~~录}}}
+    \renewcommand{\listtablename}{\centerline{\xiaoer \textbf{表~~~目~~~录}}}
 \else
     \renewcommand{\contentsname}{\centerline{\xiaoer \textbf{CONTENTS}}}
+    \renewcommand{\listfigurename}{\centerline{\xiaoer \textbf{FIGURE CONTENTS}}}
+    \renewcommand{\listtablename}{\centerline{\xiaoer \textbf{TABLE CONTENTS}}}
 \fi
 
 \renewcommand{\cftsecfont}{\sihao \bfseries}
@@ -236,6 +251,30 @@
 \renewcommand{\cftsubsubsecfont}{\sihao}
 \renewcommand{\cftsubsubsecpagefont}{\sihao}
 \renewcommand{\cftsubsubsecindent}{4em}
+
+\renewcommand{\cftfigfont}{\sihao}
+\renewcommand{\cftfigpagefont}{\sihao}
+
+\renewcommand{\cfttabfont}{\sihao}
+\renewcommand{\cfttabpagefont}{\sihao}
+
+\ifisChinese
+    \renewcommand{\cftfigpresnum}{图~}
+    \renewcommand{\cftfigaftersnum}{.}
+    \settowidth{\cftfignumwidth}{图~88.\quad}
+    
+    \renewcommand{\cfttabpresnum}{表~}
+    \renewcommand{\cfttabaftersnum}{.}
+    \settowidth{\cfttabnumwidth}{表~88.\quad}
+\else
+    \renewcommand{\cftfigpresnum}{Fig~}
+    \renewcommand{\cftfigaftersnum}{.}
+    \settowidth{\cftfignumwidth}{Fig~88.\quad}
+    
+    \renewcommand{\cfttabpresnum}{Table~}
+    \renewcommand{\cfttabaftersnum}{.}
+    \settowidth{\cfttabnumwidth}{Table~88.\quad}
+\fi
 
 
 % 标题格式
